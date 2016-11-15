@@ -31,7 +31,7 @@ lm.controls.Tab = function( header, contentItem ) {
 	this._onTabClickFn = lm.utils.fnBind( this._onTabClick, this );
 	this._onCloseClickFn = lm.utils.fnBind( this._onCloseClick, this );
 
-	this.element.click( this._onTabClickFn );
+	this.element.on( 'click touchend', this._onTabClickFn );
 
 	if( this.contentItem.config.isClosable ) {
 		this.closeElement.click( this._onCloseClickFn );
@@ -100,7 +100,7 @@ lm.utils.copy( lm.controls.Tab.prototype,{
 	 * @returns {void}
 	 */
 	_$destroy: function() {
-		this.element.off( 'click', this._onTabClickFn );
+		this.element.off( 'click touchend', this._onTabClickFn );
 		this.closeElement.off( 'click', this._onCloseClickFn );
 		if( this._dragListener ) {
 			this._dragListener.off( 'dragStart', this._onDragStart );
